@@ -2,6 +2,8 @@ import { client } from '@/lib/sanity.client';
 import urlFor from '@/lib/urlFor';
 import { groq } from 'next-sanity';
 import Image from 'next/image';
+import { PortableText } from '@portabletext/react';
+import { RichTextComponents } from '@/components/RichTextComponents';
 
 type Props = {
   params: {
@@ -50,15 +52,29 @@ async function Post({ params: { slug } }: Props) {
                   height={40}
                   width={40}
                 />
-                <div>
-                  <h3>{post.author.name}</h3>
+                <div className="w-64">
+                  <h3 className="text-lg font-bold">{post.author.name}</h3>
                   <div>{/* Author Bio */}</div>
                 </div>
+              </div>
+            </div>
+            <div>
+              <h2 className="italic pt-10">{post.description}</h2>
+              <div className="flex items-center justify-end mt-auto space-x-2">
+                {post.categories.map((category) => (
+                  <p
+                    key={category._id}
+                    className="bg-gray-900 px-3 py-1 rounded-full text-sm font-semibold mt-4"
+                  >
+                    {category.title}
+                  </p>
+                ))}
               </div>
             </div>
           </section>
         </div>
       </section>
+      <PortableText value={post.body} components={RichTextComponents} />
     </article>
   );
 }
