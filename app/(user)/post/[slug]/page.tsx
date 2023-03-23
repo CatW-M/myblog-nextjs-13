@@ -11,6 +11,22 @@ type Props = {
   };
 };
 
+export const revalidate = 60; //Game-changer revalidates every 60 seconds
+export async function generateStaticParams() {
+  const query = groq`
+  *[_type=='post']
+  {
+    slug
+  }
+  `;
+  const slugs: Post[] = await client.fetch(query);
+  const slugRoutes = slugs.map((slug) => slug.slug.current);
+
+  return slugRoutes.map((slug) => ({
+    slug,
+  }));
+}
+
 async function Post({ params: { slug } }: Props) {
   const query = groq`
   *[_type=='post' && slug.current == $slug][0]
@@ -22,7 +38,7 @@ async function Post({ params: { slug } }: Props) {
   const post: Post = await client.fetch(query, { slug });
   return (
     <article className="px-10 pb-28">
-      <section className="space-y-2 border-[#0c5528] text-white">
+      <section className="space-y-2 border border-[#0c5528] text-white">
         <div className="relative min-h-56 flex flex-col md:flex-row justify-between">
           <div className="absolute top-0 w-4 h-4 opacity-10 blur-sm p-10">
             <Image
@@ -32,7 +48,7 @@ async function Post({ params: { slug } }: Props) {
               fill
             />
           </div>
-          <section className="p-5 bg-[#0c5528] w-full">
+          <section className="p-5 bg-[#b4d0de] w-full">
             <div className="flex flex-col md:flex-row justify-between gap-y-5">
               <div>
                 <h1 className="text-4xl font-extrabold">{post.title}</h1>
@@ -64,7 +80,7 @@ async function Post({ params: { slug } }: Props) {
                 {post.categories.map((category) => (
                   <p
                     key={category._id}
-                    className="bg-gray-900 px-3 py-1 rounded-full text-sm font-semibold mt-4"
+                    className="bg-[#001d46] px-3 py-1 rounded-full text-sm font-semibold mt-4"
                   >
                     {category.title}
                   </p>

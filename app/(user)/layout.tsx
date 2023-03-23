@@ -3,7 +3,7 @@ import '../../styles/globals.css';
 import Banner from '@/components/Banner';
 
 export const metadata = {
-  title: 'The Blog',
+  title: 'Canoakia Blog',
   description: 'Generated with Next.js',
 };
 export default function RootLayout({

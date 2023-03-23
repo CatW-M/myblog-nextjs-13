@@ -13,6 +13,8 @@ const query = groq`
 } | order(_createdAt desc)
 `;
 
+export const revalidate = 60; //Game-changer revalidates every 60 seconds
+
 async function Page() {
   if (previewData()) {
     return (
