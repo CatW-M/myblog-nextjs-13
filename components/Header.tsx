@@ -19,7 +19,7 @@ function Header() {
       <div>
         <Link
           href="https://www.wheelermushlin.com"
-          className="px-5 py-3 text-sm md:text-base bg-gray-900 text-[#0af3f7] flex items-center rounded-full text-center"
+          className="px-5 py-3 text-sm md:text-base bg-gray-200 text-[#0c5528] flex items-center rounded-full text-center"
         >
           Visit my Portfolio
         </Link>
