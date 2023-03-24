@@ -4,8 +4,8 @@ function Banner() {
       <div>
         <h1 className="text-7xl text-[#001d46]">CAnoakia</h1>
         <h2 className="mt-5 md:mt-0 text-[#7D0D6a]">
-          Welcome to CAnoakia, my blog about the space and time of my first
-          life.
+          Welcome to CAnoakia, my blog about the space and time commitments of
+          my first life.
         </h2>
       </div>
       <p className="mt-5 md:mt-2 text-gray-400 max-w-sm">
